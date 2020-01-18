@@ -1,4 +1,6 @@
-- hosts: workstation
+---
+- name: Create OSP Instances
+  hosts: workstation
   become: yes
   roles:
     - osp-servers

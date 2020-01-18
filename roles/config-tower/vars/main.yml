@@ -2,7 +2,7 @@
 # vars file for roles/config-tower
 org_name: Default 
 scm_branch: master 
-scm_url: "{{ github_repo }}"
+scm_url: "https://github.com/rcmacedo/ansible_advance_homework"
 proj_name: "Homework Assignment"
 user_name: admin 
 password: r3dh4t1!
