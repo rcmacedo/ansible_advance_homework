@@ -6,7 +6,7 @@
       cloud: ospcloud
       server: 'frontend'
       filters:
-      vm_state: active
+        vm_state: active
     register: result
   - debug:
       msg: "{{ result.openstack_servers }}"
