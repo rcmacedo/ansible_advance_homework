@@ -36,12 +36,12 @@
 
 - name: Show instance public IP
   debug:
-    #var: instancefloatingip.floating_ip.floating_ip_address
-    var: instancefloatingip
+    var: instancefloatingip.results.floating_ip.floating_ip_address
+    #var: instancefloatingip
 
-- name: Wait for "{{ item.0.name }}" to be available
+- name: "Wait for {{ item.value.name }} to be available"
   wait_for:
-    host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
+    host: "{{ instancefloatingip.results.floating_ip.floating_ip_address }}"
     port: 22
     search_regex: OpenSSH
     timeout: 600
