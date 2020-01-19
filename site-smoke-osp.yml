@@ -7,18 +7,18 @@
       server: 'frontend'
       filters:
         vm_state: active
-    register: result
+    register: server_info
   - debug:
-      msg: "{{ result.openstack_servers }}"
+      var: "{{ server_info.openstack_servers }}"
     tags:
       - osp.smoke1
 
   - name: Curl website
     uri:
-      url: "http://{{ item.addresses.public_v4 }}"
+      url: "http://{{ item.public_v4 }}"
       return_content: yes
     loop:
-      - "{{ result.openstack_servers }}"
+      - "{{ server_info.openstack_servers }}"
     register: webpage
     tags:
       - osp.smoke2
