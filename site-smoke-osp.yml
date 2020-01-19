@@ -9,7 +9,8 @@
         vm_state: active
     register: result
   - debug:
-      msg: "{{ result.openstack_servers }}"
+      #msg: "{{ result.openstack_servers }}"
+      var: "{{ result }}"
     tags:
       - osp.smoke
 
