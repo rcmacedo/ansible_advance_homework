@@ -18,7 +18,7 @@
       url: "http://{{ item.public_v4 }}"
       return_content: yes
     loop:
-      - "{{ result.openstack_servers.addresses }}"
+      - "{{ result.openstack_servers }}"
     register: webpage
     tags:
       - osp.smoke2
