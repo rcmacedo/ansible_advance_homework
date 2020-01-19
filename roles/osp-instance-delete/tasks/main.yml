@@ -4,6 +4,8 @@
     cloud: ospcloud
     server: "{{ item.0.name }}"
   register: result
+  with_subelements:
+    - "{{ osp_servers }}"
 
 - debug:
     msg: "{{ result.openstack_servers }}"
