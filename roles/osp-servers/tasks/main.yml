@@ -30,16 +30,16 @@
     cloud: ospcloud
     state: present
     reuse: yes
-    server: "{{ item.value.name }}"
+    server: "{{ item.0.name }}"
     network: ext_network
     wait: true
     timeout: 180
     register: instancefloatingip
     with_dict: "{{osp_servers}}"
    
-- name: Show "{{ instanceip }}" public IP
+- name: Show Instance public IP
   debug: var=instancefloatingip.floating_ip.floating_ip_address
-- name: Wait for "{{ instance_name }}" to be available
+- name: Wait for "{{ item.0.name }}" to be available
   wait_for:
     host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
     port: 22
