@@ -10,7 +10,7 @@
     register: result
   - debug:
       #msg: "{{ result.openstack_servers }}"
-      var: "{{ result }}"
+      msg: "{{ result }}"
     tags:
       - osp.smoke
 
