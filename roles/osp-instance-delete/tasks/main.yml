@@ -1,18 +1,16 @@
 ---
 # tasks file for roles/osp-instance-delete
-  - name: Fetch Instance Info
-    os_server_facts:
-      cloud: ospcloud
-      region_name: RegionOne
-    register: result
+- os_server_info:
+    cloud: ospcloud
+    server: "{{ item.0.name }}"
+  register: result
 
-  - name: Debug Instance Info
-    debug: 
-      var: info
+- debug:
+    msg: "{{ result.openstack_servers }}"
 
-  - name: Delete Instances
-    os_server:
-      cloud: ospcloud
-      name: "{{ item['id'] }}"
-      state: absent
-    loop: "{{ info['openstack_servers'] }}"
+- name: Delete Instances
+  os_server:
+    cloud: ospcloud
+    name: "{{ item['id'] }}"
+    state: absent
+  loop: "{{ result['openstack_servers'] }}"
