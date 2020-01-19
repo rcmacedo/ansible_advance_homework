@@ -36,7 +36,8 @@
 
 - name: Show instance public IP
   debug:
-    var: instancefloatingip.floating_ip.floating_ip_address
+    #var: instancefloatingip.floating_ip.floating_ip_address
+    var: instancefloatingip
 
 - name: Wait for "{{ item.0.name }}" to be available
   wait_for:
