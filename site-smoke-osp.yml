@@ -9,23 +9,22 @@
         vm_state: active
     register: result
   - debug:
-      #msg: "{{ result.openstack_servers }}"
-      msg: "{{ result }}"
+      msg: "{{ result.openstack_servers }}"
     tags:
-      - osp.smoke
+      - osp.smoke1
 
   - name: Curl website
     uri:
-      url: "http://{{item.public_v4}}"
+      url: "http://{{ item.public_v4 }}"
       return_content: yes
-    with_items:
-      - "{{ result.ansible_facts.openstack_servers }}"
+    loop:
+      - "{{ result.openstack_servers }}"
     register: webpage
     tags:
-      - osp.smoke
+      - osp.smoke2
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
     when: "'Ansible has done its job' not in webpage.results[0].content"
     tags:
-      - osp.smoke
+      - osp.smoke3
