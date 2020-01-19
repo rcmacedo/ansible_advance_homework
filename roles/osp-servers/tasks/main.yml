@@ -31,12 +31,12 @@
     network: ext_network
     wait: true
     timeout: 180
-  register: instancefloatingip['results']
+  register: instancefloatingip
   with_dict: "{{ osp_servers }}"
 
 - name: Show instance public IP
   debug:
-    var: "{{ item.floating_ip.floating_ip_address }}"
+    var: {{ item.floating_ip.floating_ip_address }}
   loop: "{{ instancefloatingip.results }}"
 
 - name: "Wait for {{ item.value.name }} to be available"
@@ -46,3 +46,4 @@
     search_regex: OpenSSH
     timeout: 600
   delegate_to: "{{ inventory_hostname }}"
+  loop: "{{ instancefloatingip.results }}"
