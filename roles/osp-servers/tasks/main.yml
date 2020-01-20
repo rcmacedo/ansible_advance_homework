@@ -10,7 +10,7 @@
 - name: Starting Instances
   os_server_action:
     cloud: ospcloud
-    name: "{{ item['id'] }}"
+    server: "{{ item['id'] }}"
     action: start
   loop: "{{ result.openstack_servers }}"
 
