@@ -8,7 +8,7 @@
     msg: "{{ result.openstack_servers }}"
 
 - name: Starting Instances
-  os_server:
+  os_server_action:
     cloud: ospcloud
     name: "{{ item['id'] }}"
     state: start
