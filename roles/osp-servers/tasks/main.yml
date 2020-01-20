@@ -1,5 +1,4 @@
 ---
-#tasks file for roles/osp-instance-delete
 - os_server_info:
     cloud: ospcloud
     region_name: RegionOne
