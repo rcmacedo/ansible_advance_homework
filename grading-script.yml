@@ -12,15 +12,17 @@
   gather_facts: false
   tasks:
   - name: OpenStack servers
-    os_server_facts:
+    os_server_info:
       cloud: ospcloud
       server: 'frontend'
     register: openstack_info
 
   - name: Curl website
-    command: curl "http://{{item.public_v4}}"
-    with_items:
-       - "{{ openstack_info.ansible_facts.openstack_servers }}"
+    uri:
+      url: "http://{{item.public_v4}}"
+      return_content: yes
+    loop:
+      - "{{ openstack_info.openstack_servers }}"
     register: webpage
   - name: Fail
     fail:
@@ -33,9 +35,11 @@
   - name: Curl website
     command: curl "http://frontend1.{{ ANSIBLE_ADVANCE_GUID }}.example.opentlc.com"
     register: webpage
-  - debug: var=webpage.stdout
+  - debug: 
+      var: "{{webpage.stdout}}"
   - name: Fail
     fail:
     when: "'Ansible' not in webpage.stdout" 
   - name: Success
-    debug: msg="Congrats Yours HW Assignment is completed"
+    debug:
+      msg: "{{ Congrats Yours HW Assignment is completed }}"
