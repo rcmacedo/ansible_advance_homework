@@ -11,7 +11,7 @@
   os_server_action:
     cloud: ospcloud
     name: "{{ item['id'] }}"
-    state: start
+    action: start
   loop: "{{ result.openstack_servers }}"
 
 - name: Create new server instances and attaches them a network and passes metadata to the instance
