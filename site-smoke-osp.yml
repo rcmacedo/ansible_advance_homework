@@ -5,8 +5,8 @@
     os_server_info:
       cloud: ospcloud
       server: 'frontend'
-      filters:
-        vm_state: active
+      #filters:
+       # vm_state: active
     register: server_info
   - debug:
       var: "{{ server_info.openstack_servers }}"
